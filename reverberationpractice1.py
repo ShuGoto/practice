@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
 
+
+
 """
 Reverberation
+
+音源（拍手音）とホールのインパルス応答を畳み込んだ残響付加練習，畳み込みプログラミング理解のため作成．
+ほぼトレース
+改良の余地あり，c++，matlabへの移植練習も検討中．
+
 """
 
 from scipy import array, ceil, float64, int16, log2, zeros
