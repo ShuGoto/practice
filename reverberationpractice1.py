@@ -17,10 +17,11 @@ from scipy.fftpack import fft
 from scipy.io.wavfile import read, write
 import soundfile as sf
 from scipy import fromstring
-#from scikits.audiolab import wavread, wavwright
+
 
 ### 指定値以上の最小の2のべき乗の指数
 #この作業の理由：FFTは2のべき乗ではないと行けないため，残った部分を0で埋める必要がある．
+#matlabにはnextpow2が既に用意されている．
 def nextpow2(n):
     return ceil(log2(abs(n)))
     #ceil = 小数点以下切り上げ
@@ -77,6 +78,7 @@ def test():
     reverbed_signal = sampling_reverb(data, impulse_response)
 
     ##クリッピング防止
+    #多チャンネルの場合はクリッピング防止処理は全てのチャンネルを調べ，かつ全てのチャンネルに同一の係数をかける必要がある．
     if max(reverbed_signal) > 1:
         reverbed_signal /= (max(reverbed_signal) * 1.2)
 
